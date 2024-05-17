@@ -96,14 +96,14 @@ func getRules() (error, []Rule) {
 	for _, item := range rules {
 		sourceRe := regexp.MustCompile(`-s (\S+)`) // 源地址提取
 		sourceMatch := sourceRe.FindStringSubmatch(item)
+		protocolRe := regexp.MustCompile(`-p (\S+)`) // 协议提取
+		protocolMatch := protocolRe.FindStringSubmatch(item)
+		portRe := regexp.MustCompile(`--dport (\S+)`) // 端口提取
+		portMatch := portRe.FindStringSubmatch(item)
+		actionRe := regexp.MustCompile(`-j (\S+)`) // 动作提取
+		actionMatch := actionRe.FindStringSubmatch(item)
 		if len(sourceMatch) > 1 {
 			arr := strings.Split(sourceMatch[1], "/")
-			protocolRe := regexp.MustCompile(`-p (\S+)`) // 协议提取
-			protocolMatch := protocolRe.FindStringSubmatch(item)
-			portRe := regexp.MustCompile(`--dport (\S+)`) // 端口提取
-			portMatch := portRe.FindStringSubmatch(item)
-			actionRe := regexp.MustCompile(`-j (\S+)`) // 动作提取
-			actionMatch := actionRe.FindStringSubmatch(item)
 			temp = temp + 1
 			r = append(r, Rule{
 				Id:         temp,
@@ -113,6 +113,18 @@ func getRules() (error, []Rule) {
 				TargetPort: portMatch[1],
 				Action:     actionMatch[1],
 			})
+		} else {
+			if len(protocolMatch) > 1 && len(portMatch) > 1 && len(actionMatch) > 1 {
+				temp = temp + 1
+				r = append(r, Rule{
+					Id:         temp,
+					Source:     "0.0.0.0",
+					Subnet:     "0",
+					Protocol:   protocolMatch[1],
+					TargetPort: portMatch[1],
+					Action:     actionMatch[1],
+				})
+			}
 		}
 	}
 	return nil, r
