@@ -324,13 +324,13 @@
         form.verify({
             isIPv4: function(value, elem) {  // 校验是否是ipv4
                         if (!value) return;
-                        if (!(/^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(value))) {
+                        if (!(/^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(value) || value === "0.0.0.0")) {
                             return "不是正确的ip格式";
                         }
                     },
             isRange: function(value, elem) {  // 校验掩码范围
                         if (!value) return;
-                        if (!(1 <= parseInt(value) && parseInt(value) <= 32)) {
+                        if (!(0 <= parseInt(value) && parseInt(value) <= 32)) {
                             return "掩码范围只能是1-32";
                         }
                     },
