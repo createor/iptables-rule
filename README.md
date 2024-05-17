@@ -19,9 +19,13 @@
 
 访问 http://ip:8089
 
-首页
+首页：显示所有规则，可以筛选查找指定的IP，删除或者新建规则，以及导出现有规则
 
 ![001.png](https://github.com/createor/iptables-rule/blob/master/img/001.png)
+
+新建规则页面：点击新增规则，可以一次添加多条规则
+
+![002.png](https://github.com/createor/iptables-rule/blob/master/img/002.png)
 
 
 ## Debian/Ubuntu下使用
