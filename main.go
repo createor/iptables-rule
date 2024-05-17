@@ -27,7 +27,7 @@ type Rule struct {
 
 // 请求格式
 type ReqBody struct {
-	Rules []Rule `json:"rules"` //
+	Rules []Rule `json:"rules"` // 规则数组
 }
 
 // 消息格式
@@ -62,6 +62,9 @@ func checkRule(r Rule) bool {
 
 // 判断是否是ipv4
 func isIPv4(ip string) bool {
+	if ip == "0.0.0.0" {
+		return true
+	}
 	pattern := `^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$`
 	regex := regexp.MustCompile(pattern)
 	return regex.MatchString(ip)
@@ -73,7 +76,7 @@ func subnetRange(subnet string) bool {
 	if err != nil {
 		return false
 	}
-	return 1 <= number && number <= 32
+	return 0 <= number && number <= 32
 }
 
 // 判断端口范围
@@ -114,6 +117,7 @@ func getRules() (error, []Rule) {
 				Action:     actionMatch[1],
 			})
 		} else {
+			// bugfix: -s 0.0.0.0/0 不显示问题
 			if len(protocolMatch) > 1 && len(portMatch) > 1 && len(actionMatch) > 1 {
 				temp = temp + 1
 				r = append(r, Rule{
@@ -185,7 +189,7 @@ func getRulesView(c *gin.Context) {
 
 func addRulesView(c *gin.Context) {
 	var body ReqBody
-	err = c.BindJSON(&body)
+	err = c.BindJSON(&body)  // 解析json数据
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"code":    -1,
@@ -240,7 +244,7 @@ func index(c *gin.Context) {
 func main() {
 	if *filepath != "" {
 		_, err = os.Stat(*filepath)
-		if err != nil && os.IsNotExist(err) {
+		if err != nil && os.IsNotExist(err) {  // 判断声明的配置文件是否存在
 			log.Fatal(err)
 			os.Exit(0)
 		}
