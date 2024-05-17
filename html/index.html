@@ -51,6 +51,7 @@
         var number = 0;
         var hasCheckedData = new Set();  // 已选中的行的id
 
+        // bugfix: 翻页显示选中的行
         function reduceMap(data) {
             let arr = [];
             data.forEach(item => {
@@ -74,7 +75,7 @@
                 curr: 1,
                 groups: 3
             },
-            limit: 10,
+            limit: 10,  // 每页条数
             limits: [10],
             loading: true,
             toolbar: "#toolBar",
@@ -150,10 +151,10 @@
             }
         });
 
-        // 删除规则
+        // 工具栏事件
         table.on("toolbar(iptables)", function(obj) {
             switch(obj.event) {
-                case "LAYTABLE_TIPS":
+                case "LAYTABLE_TIPS":  // 导出配置
                     $.ajax({
                         url: "/rule/api/v1/get",
                         type: "get",
@@ -174,7 +175,7 @@
                         }
                     });
                     break;
-                case "delete":
+                case "delete":  // 删除规则
                     if ($(this).hasClass("layui-btn-disabled")) { return false; }
                     let arr = [];
                     cache.forEach(item => {
@@ -408,7 +409,7 @@
                         $("#btn-container").before(getDom());
                         form.render();  // 每次添加元素后要重新渲染一次表单
                     });
-                    $("#cancel").on("click", function() {
+                    $("#cancel").on("click", function() {  // 取消按钮事件
                         layer.closeAll();
                     });
                     form.on("submit(confirm)", function() {
