@@ -1,6 +1,18 @@
 # rule 一款iptables的管理工具
 注意： 只支持对INPUT的管理
 
+## 文件说明
+
+```bash
+|--dist (编译安装包目录)
+|--html (前端文件夹)
+|--build.sh (编译脚本)
+|--main.go (主函数文件)
+|--rule.service (systemd服务文件)
+|--shutdown.sh (停止服务脚本)
+|--startup.sh (启动服务脚本)
+```
+
 ## 介绍
 
 服务默认使用8089端口, 如果需要修改可以在startup.sh中DEFAULT_PORT参数
