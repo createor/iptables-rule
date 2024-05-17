@@ -17,7 +17,7 @@
 
 服务默认使用8089端口, 如果需要修改可以在startup.sh中DEFAULT_PORT参数
 
-访问http://ip:8089
+访问 http://ip:8089
 
 首页
 
@@ -58,7 +58,7 @@
 
 ```bash
 启动：systemctl start rule.service
-停止：systemctl stop rule.service
+停止：systemctl stop rule.service   【注意:每次修改完规则后,应关闭服务避免造成不必要的安全问题】
 状态：systemctl status rule.service
 ```
 
