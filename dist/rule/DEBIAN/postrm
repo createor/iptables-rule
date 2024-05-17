@@ -1,0 +1,6 @@
+#/bin/sh
+set -e
+if [ -d "/usr/local/share/rule" ];then
+  rm -rf /usr/local/share/rule
+fi
+exit 0

@@ -1,0 +1,6 @@
+Package: rule
+Version: 0.0.1
+Section: base
+Architecture: amd64
+Maintainer: jibin.cai
+Description: add or delete and manage iptables rule by html

@@ -1,0 +1,9 @@
+#/bin/sh
+set -e
+if [ -d "/usr/lib/systemd/system" ]; then
+  cp -f /usr/local/share/rule/rule.service /usr/lib/systemd/system/
+else
+  cp -f /usr/local/share/rule/rule.service /lib/systemd/system/
+fi
+systemctl daemon-reload
+exit 0
