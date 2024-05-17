@@ -21,7 +21,7 @@
 
 首页
 
-[001.png](https://github.com/createor/iptables-rule/blob/master/img/001.png)
+![001.png](https://github.com/createor/iptables-rule/blob/master/img/001.png)
 
 
 ## Debian/Ubuntu下使用
