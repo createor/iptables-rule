@@ -38,6 +38,14 @@
 卸载: sudo rpm -e rule
 ```
 
+## 使用
+
+```bash
+启动：systemctl start rule.service
+停止：systemctl stop rule.service
+状态：systemctl status rule.service
+```
+
 ## 开机自动加载防火墙规则
 
 首先在页面上导出规则文件rule.json
