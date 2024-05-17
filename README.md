@@ -21,18 +21,7 @@
 
 首页
 
-
-
-添加规则
-
-
-
-删除规则
-
-
-
-导出规则
-
+[001.png](https://github.com/createor/iptables-rule/blob/master/img/001.png)
 
 
 ## Debian/Ubuntu下使用
