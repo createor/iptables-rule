@@ -3,4 +3,9 @@ set -e
 if [ -d "/usr/local/share/rule" ];then
   rm -rf /usr/local/share/rule
 fi
+if [ -f "/usr/lib/systemd/system/rule.service" ]; then
+  rm -f /usr/lib/systemd/system/rule.service
+else
+  rm -f /lib/systemd/system/rule.service
+fi
 exit 0
