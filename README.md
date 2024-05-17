@@ -3,7 +3,7 @@
 
 ## 介绍
 
-服务默认使用8089端口, 如果需要修改可以在startup.sh中
+服务默认使用8089端口, 如果需要修改可以在startup.sh中DEFAULT_PORT参数
 
 访问http://ip:8089
 
