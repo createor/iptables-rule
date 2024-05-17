@@ -1,5 +1,6 @@
 #!/bin/bash
-# @Time:2024/05/13
+# @Desc：编译并制作deb\rpm安装包
+# @Time: 2024/05/13
 
 VERSION=0.0.1  # 版本
 DEFAULT_ARCH=x86_64  # 默认架构
@@ -50,7 +51,7 @@ case "${2}" in
     "centos")
       # 生成rpm安装包
       # 请在Centos系统上执行
-	  # go build -ldflags="-buildid" -o rule
+      # go build -ldflags="-buildid" -o rule
       go build -ldflags="-s -w" -o rule
       sed -i "s/Version[[:space:]]\S*/Version: ${VERSION}/" dist/rpmbuild/SPECS/rule.spec  # 替换版本字段
       mkdir rule-${VERSION}
